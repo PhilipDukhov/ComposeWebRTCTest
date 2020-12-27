@@ -22,7 +22,6 @@ fun SurfaceView(
 ) {
     val context = AmbientContext.current
     val customView = remember {
-        println("SurfaceView initialize")
         SurfaceViewRenderer(context).apply {
             init(surfaceViewContext.eglBase.eglBaseContext, null)
             setEnableHardwareScaler(true)
@@ -34,13 +33,9 @@ fun SurfaceView(
         { customView },
         modifier = modifier
     ) {
-        println("SurfaceView addSink $it")
-        surfaceViewContext.videoTrack.setEnabled(true)
         surfaceViewContext.videoTrack.addSink(it)
     }
     onDispose {
-        println("SurfaceView removeSink $customView")
-//        surfaceViewContext.videoTrack.setEnabled(false)
         surfaceViewContext.videoTrack.removeSink(customView)
     }
 }

@@ -62,12 +62,15 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun TestView(context: SurfaceViewContext?) =
-        Box(contentAlignment = Alignment.Center) {
+        Column(
+                modifier = Modifier
+                        .fillMaxWidth()
+        ) {
             context?.let {
                 SurfaceView(
                         it,
                         modifier = Modifier
-                                .fillMaxSize()
+                                .weight(1F)
                 )
             }
             Box(
@@ -75,14 +78,17 @@ fun TestView(context: SurfaceViewContext?) =
                             .size(40.dp)
                             .background(Color.Red)
             )
-            Text("hello")
+            Text("hello",
+                    color = Color.White,
+                    modifier = Modifier
+            )
             Box(
                     modifier = Modifier
-                            .height(200.dp)
                             .background(Color.Red)
                             .aspectRatio(1080F/1920)
-                            .align(Alignment.BottomEnd)
+                            .align(Alignment.End)
                             .padding(10.dp)
+                            .weight(1F)
             ) {
                 context?.let {
                     if (counter % 2 == 0) {
@@ -94,4 +100,10 @@ fun TestView(context: SurfaceViewContext?) =
                     }
                 }
             }
+            Text(
+                    "hello again",
+                    color = Color.White,
+                    modifier = Modifier
+                            .align(Alignment.End)
+            )
         }

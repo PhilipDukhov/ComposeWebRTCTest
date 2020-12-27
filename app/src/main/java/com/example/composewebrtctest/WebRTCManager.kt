@@ -37,7 +37,9 @@ class WebRTCManager(private val applicationContext: Context) {
             startCapture(1280, 720, 30)
             videoSource
         }
-    )
+    ).apply {
+        setEnabled(true)
+    }
 
     private fun createVideoCapturer(): VideoCapturer? =
         if (Camera2Enumerator.isSupported(applicationContext)) {
